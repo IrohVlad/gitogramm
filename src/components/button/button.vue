@@ -1,7 +1,7 @@
 <template>
-    <div @mouseover="onHover" @mouseout="onHover" :class="hover ? 'button active' : 'button'">
+    <button @click.prevent="onHover" :class="hover ? 'button active' : 'button'">
         {{hover ? hovertext : text}}
-    </div>
+    </button>
 </template>
 
 <script>

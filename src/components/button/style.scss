@@ -1,4 +1,4 @@
-.button{
+.button {
     min-height: 30px;
     min-width: 150px;
     text-align: center;
@@ -11,7 +11,9 @@
     padding: 12px 7px;
     box-sizing: border-box;
     background-color: #31AE54;
+    border: none;
 }
-.active{
+
+.active {
     background-color: #9E9E9E;
 }
