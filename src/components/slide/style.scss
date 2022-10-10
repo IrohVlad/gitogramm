@@ -1,0 +1,32 @@
+.slide-container{
+    width: 375px;
+    height: 667px;
+    background-color: rgb(164, 160, 160);
+    border-radius: 6.5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .slide-header{
+        height: 67px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 18px;
+        border-bottom: 2px solid black ;
+    }
+    .slide-content{
+        box-sizing: border-box;
+        width: 100%;
+        height: 500px;
+        overflow-y: scroll;
+        padding: 18px;
+        .content{
+            max-height: 100%;
+        }
+    }
+    .slide-button{
+        padding: 18px;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100px;
+    }
+}

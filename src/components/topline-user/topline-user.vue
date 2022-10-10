@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'toplineuser',
-  props: ['icon', 'nickname', 'showname'],
+  props: ['nickname', 'showname'],
   data () {
     return {
     }
