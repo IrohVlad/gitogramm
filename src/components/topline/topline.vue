@@ -35,6 +35,7 @@ export default {
         { name: 'Josh', icon: 'home.svg' },
         { name: 'Josh', icon: '../../assets/avatar.svg' },
         { name: 'Josh', icon: 'home.svg' },
+        { name: 'Josh', icon: 'home.svg' },
         { name: 'Josh', icon: 'home.svg' }
       ]
 
