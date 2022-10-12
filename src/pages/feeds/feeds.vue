@@ -1,6 +1,6 @@
 <template>
     <div class="topline">
-        <topline>
+        <topline :toplinedata="postinfo"  >
             <template v-slot:headline>
                 Gitogram/
             </template>
@@ -17,11 +17,11 @@
     </div>
     <div class="x-container">
       <div class="posts">
-      <post v-for="info in postinfo" :title="info.title" :issus="info.issues" :disc="info.disc" :stars="info.stars" :reposts="info.reposts" :key="info.nick">
+      <post v-for="info in postinfo" :title="info.name" :issus="info.issues" :disc="info.description" :stars="info.stargazers_count" :reposts="info.forks_count" :key="info.id">
         <template v-slot:user>
-          <toplineuser :showname="true" :nickname="info.nick">
+          <toplineuser :showname="true" :nickname="info.owner.login">
             <template v-slot:img >
-              <img src="../../assets/avatar.svg" alt=""/>
+              <img :src="info.owner.avatar_url" alt=""/>
             </template>
           </toplineuser>
         </template>
@@ -34,6 +34,7 @@
 import { topline } from '../../components/topline'
 import { toplineuser } from '../../components/topline-user'
 import { post } from '../../components/post'
+import { getData } from '../../../fetches'
 
 export default {
   name: 'feeds',
@@ -74,6 +75,13 @@ export default {
     topline,
     toplineuser,
     post
+  },
+  async created () {
+    try {
+      const { data } = await getData()
+      this.postinfo = data.items
+    } catch (error) {
+    }
   }
 }
 </script>

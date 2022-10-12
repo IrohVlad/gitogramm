@@ -19,3 +19,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.img{
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px rgba(52, 52, 57, 0.29);
+}
+</style>

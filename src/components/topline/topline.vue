@@ -10,9 +10,9 @@
                 </div>
             </div>
             <div class="topline-users">
-                <toplineuser v-for="user in users" :showname="true" :key="user" :nickname="user.name">
+                <toplineuser v-for="user in toplinedata" :showname="true" :key="user" :nickname="user.owner.login">
                     <template v-slot:img>
-                        <img src="../../assets/avatar.svg" alt=""/>
+                        <img :src="user.owner.avatar_url" alt=""/>
                     </template>
                 </toplineuser>
             </div>
@@ -26,19 +26,11 @@ export default {
   name: 'topline',
   data () {
     return {
-      users: [
-        { name: 'Josh', icon: '../../assets/avatar.svg' },
-        { name: 'Josh', icon: 'home.svg' },
-        { name: 'Josh', icon: 'home.svg' },
-        { name: 'Josh', icon: '../../assets/avatar.svg' },
-        { name: 'Josh', icon: 'home.svg' },
-        { name: 'Josh', icon: 'home.svg' },
-        { name: 'Josh', icon: '../../assets/avatar.svg' },
-        { name: 'Josh', icon: 'home.svg' },
-        { name: 'Josh', icon: 'home.svg' },
-        { name: 'Josh', icon: 'home.svg' }
-      ]
-
+    }
+  },
+  props: {
+    toplinedata: {
+      type: Object
     }
   },
   components: {
