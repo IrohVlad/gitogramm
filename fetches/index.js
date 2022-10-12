@@ -17,5 +17,5 @@ export function getData () {
   params.append('sort', 'stars')
   params.append('per_page', 10)
   params.append('q', `language:javascript created:>${formattedDate}`)
-  return axios.get(`http://api.github.com/search/repositories?${params}`)
+  return axios.get(`https://api.github.com/search/repositories?${params}`)
 }
