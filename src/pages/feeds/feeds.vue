@@ -17,13 +17,15 @@
     </div>
     <div class="x-container">
       <div class="posts">
-      <post v-for="info in postinfo" :title="info.name" :issus="info.issues" :disc="info.description" :stars="info.stargazers_count" :reposts="info.forks_count" :key="info.id">
+      <post v-for="info in $store.state.usersdata" :title="info.name" :issus="info.issues" :disc="info.description" :stars="info.stargazers_count" :reposts="info.forks_count" :key="info.id">
         <template v-slot:user>
-          <toplineuser :showname="true" :nickname="info.owner.login">
+          <router-link to="/slider">
+            <toplineuser :showname="true" :nickname="info.owner.login">
             <template v-slot:img >
               <img :src="info.owner.avatar_url" alt=""/>
             </template>
-          </toplineuser>
+            </toplineuser>
+          </router-link>
         </template>
       </post>
     </div>
@@ -34,40 +36,12 @@
 import { topline } from '../../components/topline'
 import { toplineuser } from '../../components/topline-user'
 import { post } from '../../components/post'
-import { getData } from '../../../fetches'
 
 export default {
   name: 'feeds',
   data () {
     return {
       postinfo: [
-        {
-          ava: '../../assets/avatar.svg',
-          nick: 'VaniaStalker',
-          title: 'BestFramework',
-          disc: 'JavaScript framework for building interactive web applications ⚡',
-          stars: '999k',
-          reposts: '66',
-          issues: [
-            { name: 'joshua_l', text: 'Enable performance measuring in production, at the users request' },
-            { name: 'joshua_l', text: 'Enable performance measuring in production, at the users request' }
-          ]
-        },
-        {
-          ava: '../../assets/avatar.svg',
-          nick: 'Vlad121',
-          title: 'SuperFramework',
-          disc: 'JavaScript framework for building interactive web applications ⚡',
-          stars: '156k',
-          reposts: '4',
-          issues: [
-            { name: 'joshua_l', text: 'Enable performance measuring in production, at the users request' },
-            { name: 'Marselle', text: 'transition-group with flex parent causes removed items to fly' },
-            { name: 'Camille', text: 'transition-group with flex parent causes removed items to fly' },
-            { name: 'joshua_l', text: 'Enable performance measuring in production, at the users request' },
-            { name: 'Marselle', text: 'transition-group with flex parent causes removed items to fly' }
-          ]
-        }
       ]
     }
   },
@@ -75,13 +49,6 @@ export default {
     topline,
     toplineuser,
     post
-  },
-  async created () {
-    try {
-      const { data } = await getData()
-      this.postinfo = data.items
-    } catch (error) {
-    }
   }
 }
 </script>

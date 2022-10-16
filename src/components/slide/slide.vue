@@ -1,5 +1,5 @@
 <template>
-    <div class="slide-container">
+    <div :class="active ? 'slide-container slide-active' : 'slide-container'">
         <div class="slide-header">
             <xprogress></xprogress>
             <toplineuser nickname="John" :showname="true">
@@ -26,12 +26,13 @@ import { toplineuser } from '../../components/topline-user'
 import { button } from '../../components/button'
 import { progress } from '../../components/progress'
 export default {
-    name: 'slide',
-    components: {
-        toplineuser,
-        xbutton: button,
-        xprogress: progress
-    }
+  name: 'slide',
+  components: {
+    toplineuser,
+    xbutton: button,
+    xprogress: progress
+  },
+  props: ['active']
 }
 </script>
 

@@ -1,14 +1,19 @@
 <template>
-  <feeds/>
+  <router-view/>
 </template>
 
 <script>
-import { feeds } from './pages/feeds'
-
+import { getData } from '../fetches'
 export default {
   name: 'App',
   components: {
-    feeds
+  },
+  async created () {
+    try {
+      const { data } = await getData()
+      this.$store.commit('SET_USERSDATA', data.items)
+    } catch (error) {
+    }
   }
 }
 </script>

@@ -10,11 +10,13 @@
                 </div>
             </div>
             <div class="topline-users">
-                <toplineuser v-for="user in toplinedata" :showname="true" :key="user" :nickname="user.owner.login">
+              <router-link v-for="user in $store.state.usersdata" :key="user" to="/slider">
+                <toplineuser :showname="true" :nickname="user.owner.login">
                     <template v-slot:img>
                         <img :src="user.owner.avatar_url" alt=""/>
                     </template>
                 </toplineuser>
+              </router-link>
             </div>
         </div>
     </div>

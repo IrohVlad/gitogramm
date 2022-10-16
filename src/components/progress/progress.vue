@@ -6,20 +6,20 @@
 
 <script>
 export default {
-    name: 'progress',
-    data () {
-        return {
-            active: false
-        }
-    },
-    methods: {
-
-    },
-    mounted () {
-        this.$nextTick(()=>{
-            this.active = true
-        })
+  name: 'progress',
+  data () {
+    return {
+      active: false
     }
+  },
+  methods: {
+
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.active = true
+    })
+  }
 }
 </script>
 
