@@ -42,6 +42,33 @@ export default {
   data () {
     return {
       postinfo: [
+        {
+          ava: '../../assets/avatar.svg',
+          nick: 'VaniaStalker',
+          title: 'BestFramework',
+          disc: 'JavaScript framework for building interactive web applications ⚡',
+          stars: '999k',
+          reposts: '66',
+          issues: [
+            { name: 'joshua_l', text: 'Enable performance measuring in production, at the users request' },
+            { name: 'joshua_l', text: 'Enable performance measuring in production, at the users request' }
+          ]
+        },
+        {
+          ava: '../../assets/avatar.svg',
+          nick: 'Vlad121',
+          title: 'SuperFramework',
+          disc: 'JavaScript framework for building interactive web applications ⚡',
+          stars: '156k',
+          reposts: '4',
+          issues: [
+            { name: 'joshua_l', text: 'Enable performance measuring in production, at the users request' },
+            { name: 'Marselle', text: 'transition-group with flex parent causes removed items to fly' },
+            { name: 'Camille', text: 'transition-group with flex parent causes removed items to fly' },
+            { name: 'joshua_l', text: 'Enable performance measuring in production, at the users request' },
+            { name: 'Marselle', text: 'transition-group with flex parent causes removed items to fly' }
+          ]
+        }
       ]
     }
   },
