@@ -11,8 +11,18 @@ export default {
   async created () {
     try {
       const { data } = await getData()
-      this.$store.commit('SET_USERSDATA', data.items)
+      const dat = data.items
+      dat.forEach((element, i) => {
+        if (i === 0) {
+          element.act = true
+        } else {
+          element.act = false
+        }
+      })
+      this.$store.commit('SET_USERSDATA', dat)
+      await console.log(this.$store.state.usersdata)
     } catch (error) {
+      console.log(error)
     }
   }
 }

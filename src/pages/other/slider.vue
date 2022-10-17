@@ -6,12 +6,16 @@
         </div>
         <div class="slider-container">
           <div class="slides">
-            <div class="slide" v-for="info in $store.state.usersdata" :key="info.id">
-              <div class="button-move"></div>
-              <slide active="true">
+            <div class="slide" :style="`transform: scale(0.8) translateX(${-622 * this.$store.state.counter}px)`" v-for="info in $store.state.usersdata" :key="info.id">
+              <div :style="info.act ? 'display: flex' : 'display: none'" class="button-move" @click="slideDec">
+                <img src="../../assets/Shape.svg" />
+              </div>
+              <slide :active="info.act">
               {{info}}
               </slide>
-              <div class="button-move"></div>
+              <div :style="info.act ? 'display: flex' : 'display: none'" class="button-move" @click="slideInc">
+                <img src="../../assets/Shape1.svg" />
+              </div>
             </div>
           </div>
         </div>
@@ -24,6 +28,16 @@ export default {
   name: 'slider',
   components: {
     slide
+  },
+  methods: {
+    slideInc () {
+      this.$store.commit('UPDATE_COUNTER', ++this.$store.state.counter)
+      console.log(this.$store.state.counter)
+    },
+    slideDec () {
+      this.$store.commit('UPDATE_COUNTER', --this.$store.state.counter)
+      console.log(this.$store.state.counter)
+    }
   }
 }
 </script>

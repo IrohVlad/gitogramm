@@ -29,9 +29,15 @@
             grid-template-rows: 1fr;
             gap: 38px;
             .slide{
+                transition: all;
+                transition-duration: 0.5s;
                 .button-move{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     height: 35px;
                     width: 35px;
+                    border-radius: 50%;
                     background-color:white;
                 }
                 display: flex;
