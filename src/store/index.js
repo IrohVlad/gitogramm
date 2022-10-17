@@ -19,6 +19,16 @@ export default createStore({
           item.act = false
         }
       })
+    },
+    SET_COUNTER (state, payload) {
+      state.counter = payload
+      state.usersdata.forEach((item, i) => {
+        if (i === payload) {
+          item.act = true
+        } else {
+          item.act = false
+        }
+      })
     }
   },
   actions: {

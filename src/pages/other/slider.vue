@@ -9,13 +9,13 @@
         <div class="slider-container">
           <div class="slides">
             <div class="slide" :style="`transform: scale(0.8) translateX(${-622 * this.$store.state.counter}px)`" v-for="info in $store.state.usersdata" :key="info.id">
-              <div :style="info.act ? 'display: flex' : 'display: none'" class="button-move" @click="slideDec">
+              <div v-if="this.$store.state.counter != 0" :style="info.act ? 'display: flex' : 'display: none'" class="button-move" @click="slideDec">
                 <img src="../../assets/Shape.svg" />
               </div>
               <slide :active="info.act">
               {{info}}
               </slide>
-              <div :style="info.act ? 'display: flex' : 'display: none'" class="button-move" @click="slideInc">
+              <div v-if="this.$store.state.counter != 9" :style="info.act ? 'display: flex' : 'display: none'" class="button-move" @click="slideInc">
                 <img src="../../assets/Shape1.svg" />
               </div>
             </div>

@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="topline-users">
-              <router-link v-for="user in $store.state.usersdata" :key="user" to="/slider">
+              <router-link v-for="(user, i) in $store.state.usersdata" :key="user" to="/slider" @click="this.$store.commit('SET_COUNTER', i)">
                 <toplineuser :showname="true" :nickname="user.owner.login">
                     <template v-slot:img>
                         <img :src="user.owner.avatar_url" alt=""/>
