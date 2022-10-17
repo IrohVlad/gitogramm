@@ -1,6 +1,6 @@
 <template>
     <div class="progress-container">
-        <div :class="active ? 'progress-active': 'progress'"></div>
+        <div :class="activ ? 'progress-active': 'progress'"></div>
     </div>
 </template>
 
@@ -9,17 +9,11 @@ export default {
   name: 'progress',
   data () {
     return {
-      active: false
     }
   },
   methods: {
-
   },
-  mounted () {
-    this.$nextTick(() => {
-      this.active = true
-    })
-  }
+  props: ['activ']
 }
 </script>
 

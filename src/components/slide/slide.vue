@@ -1,7 +1,7 @@
 <template>
     <div :class="active ? 'slide-container slide-active' : 'slide-container'">
         <div class="slide-header">
-            <xprogress></xprogress>
+            <xprogress :activ="active"></xprogress>
             <toplineuser nickname="John" :showname="true">
                 <template v-slot:img>
                   <img src="../../assets/avatar.svg" alt=""/>

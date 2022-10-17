@@ -4,7 +4,7 @@ export default createStore({
   state: {
     usersdata: [
     ],
-    counter: 0
+    counter: -1
   },
   mutations: {
     async SET_USERSDATA (state, payload) {
