@@ -19,7 +19,7 @@
       <div class="posts">
       <post v-for="(info, i) in $store.state.usersdata" :title="info.name" :issus="info.issues" :disc="info.description" :stars="info.stargazers_count" :reposts="info.forks_count" :key="info.id">
         <template v-slot:user>
-          <router-link @click="this.$store.commit('SET_COUNTER', i)" to="/slider">
+          <router-link @click="this.$store.commit('UPDATE_COUNTER', i)" to="/slider">
             <toplineuser :showname="true" :nickname="info.owner.login">
             <template v-slot:img >
               <img :src="info.owner.avatar_url" alt=""/>

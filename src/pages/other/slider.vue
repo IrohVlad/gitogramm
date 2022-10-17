@@ -40,11 +40,6 @@ export default {
       this.$store.commit('UPDATE_COUNTER', --this.$store.state.counter)
       console.log(this.$store.state.counter)
     }
-  },
-  mounted () {
-    setInterval(() => {
-      this.$store.commit('UPDATE_COUNTER', ++this.$store.state.counter)
-    }, 4000)
   }
 }
 </script>
