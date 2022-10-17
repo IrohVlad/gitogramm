@@ -2,7 +2,9 @@
     <div class="slider-page">
         <div class="slider-topline x-container">
         <div class="topline-title">Gitogram/</div>
-        <div class="topline-close"><img src="../../assets/close.svg" alt=""></div>
+        <div class="topline-close">
+          <router-link to="/"><img src="../../assets/close.svg" alt=""/></router-link>
+        </div>
         </div>
         <div class="slider-container">
           <div class="slides">
