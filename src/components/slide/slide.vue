@@ -32,7 +32,7 @@ export default {
     xbutton: button,
     xprogress: progress
   },
-  props: ['active']
+  props: ['active', 'loading', 'data']
 }
 </script>
 

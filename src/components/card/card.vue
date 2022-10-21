@@ -1,6 +1,7 @@
 <template>
 <div class="card">
-    <div class="title">{{title}}</div>
+    <div class="title">
+      <div class="grad"></div>{{title}}</div>
     <div class="disc">
         {{disc}}
     </div>
@@ -30,10 +31,36 @@ export default {
             .title{
                 font-weight: 700;
                 font-size: 26px;
+                // background-color:#D9D9D9;
+                // height: 26px;
+                // width: fit-content;
+                // min-width: 200px;
             }
             .disc{
                 margin-top: 15px;
                 font-size: 15px;
+                // background-color:#D9D9D9;
+                // height: 15px;
+                // width: fit-content;
+                // min-width: 300px;
             }
+//             .grad{
+//             background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 49.48%, rgba(255, 255, 255, 0) 100%);
+//             height: 100%;
+//             width: 20px;
+//             animation: waves 4s ease infinite normal 0s forwards;
+//             position: absolute;
+//             }
+// }
+// @keyframes waves{
+//     0%{
+//         left: -10px;
+//     }
+//     60% {
+//         left: 100%;
+//     } 
+//     100%{
+//         left: 100%;
+//     }
 }
 </style>
