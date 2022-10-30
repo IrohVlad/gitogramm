@@ -19,3 +19,22 @@ export function getData () {
   params.append('q', `language:javascript created:>${formattedDate}`)
   return axios.get(`https://api.github.com/search/repositories?${params}`)
 }
+
+export function getReadme (login, repos) {
+  return axios.get(`https://api.github.com/repos/${login}/${repos}/readme`, {
+    headers: {
+      accept: 'application/vnd.github.v3.html+json'
+    }
+  })
+}
+
+export async function getUser () {
+  try {
+    const response = await fetch('https://api.github.com/user')
+    const data = await response.json()
+
+    console.log(data)
+  } catch (error) {
+    console.log(error)
+  }
+}

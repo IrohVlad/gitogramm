@@ -1,17 +1,23 @@
 <template>
     <div :class="active ? 'slide-container slide-active' : 'slide-container'">
         <div class="slide-header">
-            <xprogress :activ="active"></xprogress>
-            <toplineuser nickname="John" :showname="true">
+            <xprogress :active="active"></xprogress>
+            <toplineuser :nickname="data.name" :showname="true">
                 <template v-slot:img>
-                  <img src="../../assets/avatar.svg" alt=""/>
+                  <img :src="data.avatar" alt=""/>
                 </template>
             </toplineuser>
         </div>
         <div class="slide-content">
             <slot name="content">
-                <div>
-                    The easiest way to get .NET 6 Preview 4 is to install the maui-check dotnet tool from CLI and follow the instructions. For running on Mac you'll currently use your favorite text editor and terminal to edit and run apps. We expect Visual Studio for Mac .NET 6 support to begin arriving mid-year.
+                <div class="content" v-html="data.readme" v-if="data.readme">
+                </div>
+                <div class="skeleton" v-else>
+                    <div class="grad"></div>
+                    <div class="thickline"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="halfline"></div>
                 </div>
             </slot>
         </div>

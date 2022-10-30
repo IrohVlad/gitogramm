@@ -13,14 +13,10 @@ export default {
       const { data } = await getData()
       const dat = data.items
       dat.forEach((element, i) => {
-        if (i === 0) {
-          element.act = true
-        } else {
-          element.act = false
-        }
+        element.act = false
+        element.readme = ''
       })
       this.$store.commit('SET_USERSDATA', dat)
-      await console.log(this.$store.state.usersdata)
     } catch (error) {
       console.log(error)
     }

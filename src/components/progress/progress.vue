@@ -1,19 +1,28 @@
 <template>
-    <div class="progress-container">
-        <div :class="activ ? 'progress-active': 'progress'"></div>
+    <div :class={active} :key="1" class="progress-container">
+        <div ref="indicator" class="progress"></div>
     </div>
 </template>
 
 <script>
 export default {
   name: 'progress',
+  props: ['active'],
   data () {
-    return {
+    return {}
+  },
+  emits: ['onFinish'],
+  methods: {
+    emitOnFinish () {
+      this.$emit('onFinish')
     }
   },
-  methods: {
+  mounted () {
+    this.$refs.indicator.addEventListener('transitionend', () => { this.$store.commit('UPDATE_COUNTER', ++this.$store.state.counter) })
   },
-  props: ['activ']
+  beforeUnmount () {
+    this.$refs.indicator.removeEventListener('transitionend', () => { this.$store.commit('UPDATE_COUNTER', ++this.$store.state.counter) })
+  }
 }
 </script>
 
@@ -28,15 +37,12 @@ export default {
             height: 100%;
             width: 0px;
             background-color: #31AE54;
-            transition: all;
-            transition-duration: 4s;
         }
-        .progress-active{
-            height: 100%;
-            width: 100%;
-            background-color: #31AE54;
-            transition: all;
-            transition-duration: 4s;
+        &.active {
+            .progress{
+                width: 100%;
+                transition: 5s;
+            }
         }
     }
 </style>

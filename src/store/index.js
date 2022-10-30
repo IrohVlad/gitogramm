@@ -1,21 +1,40 @@
 import { createStore } from 'vuex'
+import { getReadme } from '../../fetches'
 
 export default createStore({
   state: {
-    usersdata: [
+    usersdata: [{}
     ],
-    counter: 0
+    counter: 100
   },
   mutations: {
     async SET_USERSDATA (state, payload) {
       state.usersdata = payload
     },
-    UPDATE_COUNTER (state, payload) {
-      setTimeout(() => { this.$store.commit('UPDATE_COUNTER', ++this.$store.state.counter) }, 4000)
-      state.counter = payload
+    async UPDATE_COUNTER (state, payload) {
+      let realCount
+      if (payload > 9) {
+        realCount = 0
+        state.counter = realCount
+      } else if (payload < 0) {
+        realCount = 0
+        state.counter = realCount
+      } else {
+        realCount = payload
+        state.counter = realCount
+      }
+      if (!state.usersdata[realCount].readme) {
+        try {
+          const { data } = await getReadme(state.usersdata[realCount].owner.login, state.usersdata[realCount].name)
+          state.usersdata[realCount].readme = data
+        } catch (error) {
+          console.log(error)
+        }
+      }
       state.usersdata.forEach((item, i) => {
-        if (i === payload) {
-          item.act = true
+        if (i === realCount) {
+          item.act = false
+          setTimeout(() => { item.act = true }, 0)
         } else {
           item.act = false
         }

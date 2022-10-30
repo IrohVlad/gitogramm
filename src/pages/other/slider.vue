@@ -12,7 +12,7 @@
               <div v-if="this.$store.state.counter != 0" :style="info.act ? 'display: flex' : 'display: none'" class="button-move" @click="slideDec">
                 <img src="../../assets/Shape.svg" />
               </div>
-              <slide :active="info.act">
+              <slide :data="{ name: info.owner.login, avatar: info.owner.avatar_url, readme: info.readme }" :active="info.act">
               {{info}}
               </slide>
               <div v-if="this.$store.state.counter != 9" :style="info.act ? 'display: flex' : 'display: none'" class="button-move" @click="slideInc">
@@ -40,6 +40,14 @@ export default {
       this.$store.commit('UPDATE_COUNTER', --this.$store.state.counter)
       console.log(this.$store.state.counter)
     }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      console.log(this.$store.state.counter)
+      if (this.$store.state.counter === 100) {
+        this.$store.commit('UPDATE_COUNTER', 0)
+      }
+    })
   }
 }
 </script>
