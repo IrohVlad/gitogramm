@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import { getData } from '../fetches'
+import { getData, getUser } from '../fetches'
+import { clientId, clientSecret } from '../env'
 export default {
   name: 'App',
   components: {
@@ -19,6 +20,32 @@ export default {
       this.$store.commit('SET_USERSDATA', dat)
     } catch (error) {
       console.log(error)
+    }
+    const code = new URLSearchParams(window.location.search).get('code')
+    if (code) {
+      try {
+        const response = await fetch('https://webdev-api.loftschool.com/github', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            clientId, code, clientSecret
+          })
+        })
+        const { token } = await response.json()
+        localStorage.setItem('token', token)
+        console.log(token)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    try {
+      const data = await getUser().then(item => item.json())
+      this.$store.commit('SET_USER', data)
+      console.log(this.$store.state.user)
+    } catch (e) {
+      console.log(e)
     }
   }
 }

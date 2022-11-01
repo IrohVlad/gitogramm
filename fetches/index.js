@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { clientId } from '../env'
 
 const ZeroStarting = (value) => value < 10 ? `0${value}` : value
 
@@ -29,12 +30,19 @@ export function getReadme (login, repos) {
 }
 
 export async function getUser () {
-  try {
-    const response = await fetch('https://api.github.com/user')
-    const data = await response.json()
+  return fetch('https://api.github.com/user', {
+    headers: {
+      Authorization: `token ${localStorage.getItem('token')}`
+    }
+  })
+}
+export function getCode () {
+  const githubAuthApi = 'https://github.com/login/oauth/authorize'
 
-    console.log(data)
-  } catch (error) {
-    console.log(error)
-  }
+  const params = new URLSearchParams()
+
+  params.append('client_id', clientId)
+  params.append('scope', 'repo:status read:user')
+
+  window.location.href = `${githubAuthApi}?${params}`
 }

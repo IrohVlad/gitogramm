@@ -1,17 +1,18 @@
 <template>
     <div class="topline">
-        <topline :toplinedata="postinfo"  >
+        <topline :showUser="true" :toplinedata="postinfo"  >
             <template v-slot:headline>
                 Gitogram/
             </template>
             <template v-slot:content>
-              <img class="icon" src="../../assets/Home.svg" alt=""/>
+              <img v-if="this.$store.state.user.id" class="icon" src="../../assets/Home.svg" alt=""/>
               <toplineuser :showname="false" >
                 <template v-slot:img>
-                  <img src="../../assets/avatar.svg" alt=""/>
+                  <img v-if="this.$store.state.user.id" :src="this.$store.state.user.avatar_url" alt=""/>
+                  <img v-else @click="code()" src="../../assets/avatar.svg" alt=""/>
                 </template>
               </toplineuser>
-              <img class="icon" src="../../assets/out.svg" alt=""/>
+              <img class="icon" v-if="this.$store.state.user.id" src="../../assets/out.svg" alt=""/>
             </template>
         </topline>
     </div>
@@ -36,6 +37,7 @@
 import { topline } from '../../components/topline'
 import { toplineuser } from '../../components/topline-user'
 import { post } from '../../components/post'
+import { getCode } from '../../../fetches'
 
 export default {
   name: 'feeds',
@@ -76,6 +78,11 @@ export default {
     topline,
     toplineuser,
     post
+  },
+  methods: {
+    code () {
+      getCode()
+    }
   }
 }
 </script>

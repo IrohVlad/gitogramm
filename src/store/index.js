@@ -5,11 +5,15 @@ export default createStore({
   state: {
     usersdata: [{}
     ],
+    user: {},
     counter: 100
   },
   mutations: {
     async SET_USERSDATA (state, payload) {
       state.usersdata = payload
+    },
+    async SET_USER (state, payload) {
+      state.user = payload
     },
     async UPDATE_COUNTER (state, payload) {
       let realCount
