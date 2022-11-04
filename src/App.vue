@@ -16,6 +16,7 @@ export default {
       dat.forEach((element, i) => {
         element.act = false
         element.readme = ''
+        element.issues = []
       })
       this.$store.commit('SET_USERSDATA', dat)
     } catch (error) {

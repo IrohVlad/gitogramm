@@ -28,6 +28,13 @@ export function getReadme (login, repos) {
     }
   })
 }
+export function getIssues (login, repos) {
+  return axios.get(`https://api.github.com/repos/${login}/${repos}/issues`, {
+    headers: {
+      accept: 'application/vnd.github.v3.html+json'
+    }
+  })
+}
 
 export async function getUser () {
   return fetch('https://api.github.com/user', {

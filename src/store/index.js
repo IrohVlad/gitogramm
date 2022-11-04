@@ -15,6 +15,9 @@ export default createStore({
     async SET_USER (state, payload) {
       state.user = payload
     },
+    async SET_ISSUES (state, payload) {
+      state.usersdata[payload.number].issues = payload.issue
+    },
     async UPDATE_COUNTER (state, payload) {
       let realCount
       if (payload > 9) {

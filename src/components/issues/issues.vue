@@ -1,6 +1,6 @@
 <template>
     <div class="issues">
-        <div class="text" @click="issuetoggle">{{issue ? 'View issues' : 'Hide issues'}}<img :style="issue ? '' : 'transform: rotate(180deg)'" src="../../assets/vector-bottom.svg" class="star-img" alt=""/></div>
+        <div class="text" @click="issuetoggle" @click.once="fetchIssues(index)">{{issue ? 'View issues' : 'Hide issues'}}<img :style="issue ? '' : 'transform: rotate(180deg)'" src="../../assets/vector-bottom.svg" class="star-img" alt=""/></div>
         <ul class="issues-items" :style="issue ? issueactive : ''">
             <li class="issue" v-for="issu in info" :key="issu.name">
                 <div class="issue-nick">{{issu.name}}</div>
@@ -11,9 +11,10 @@
 </template>
 
 <script>
+import { getIssues } from '../../../fetches'
 export default {
   name: 'issuesbool',
-  props: ['info'],
+  props: ['info', 'index'],
   data () {
     return {
       issue: true,
@@ -25,6 +26,15 @@ export default {
   methods: {
     issuetoggle () {
       this.issue = !this.issue
+    },
+    async fetchIssues (index) {
+      try {
+        const issues = await getIssues(this.$store.state.usersdata[index].owner.login, this.$store.state.usersdata[index].name)
+        this.$store.commit('SET_ISSUES', { number: index, issue: issues })
+        console.log(issues)
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }

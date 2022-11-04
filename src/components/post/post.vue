@@ -2,7 +2,7 @@
     <div class="post">
         <slot name="user"></slot>
         <card :title="title" :disc="disc" :stars="stars" :reposts="reposts" />
-        <issues :info="issus"></issues>
+        <issues :index="index" :info="issus"></issues>
         <div class="date">
         </div>
     </div>
@@ -14,7 +14,7 @@ import { card } from '../../components/card'
 export default {
   name: 'post',
   components: { issues, card },
-  props: ['title', 'disc', 'stars', 'reposts', 'issus'],
+  props: ['title', 'disc', 'stars', 'reposts', 'issus', 'index'],
   data () {
     return {
     }

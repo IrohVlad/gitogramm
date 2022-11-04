@@ -249,7 +249,8 @@ textarea {
     padding: 0.2em 0;
 }
 body{
-    width: 100%;
+    overflow-x: hidden;
+    width: 100vw;
     background-color: white;
     font-family: Inter;
 }
