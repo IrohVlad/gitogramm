@@ -6,7 +6,8 @@ export default createStore({
     usersdata: [{}
     ],
     user: {},
-    counter: 100
+    counter: 100,
+    starred: [{}]
   },
   mutations: {
     async SET_USERSDATA (state, payload) {
@@ -17,6 +18,12 @@ export default createStore({
     },
     async SET_ISSUES (state, payload) {
       state.usersdata[payload.number].issues = payload.issue
+    },
+    async GET_STARRED (state, payload) {
+      state.starred = payload
+    },
+    async SET_STARRED (state, payload) {
+      state.usersdata[payload.number].like = payload.star
     },
     async UPDATE_COUNTER (state, payload) {
       let realCount
@@ -41,7 +48,7 @@ export default createStore({
       state.usersdata.forEach((item, i) => {
         if (i === realCount) {
           item.act = false
-          setTimeout(() => { item.act = true }, 0)
+          setTimeout(() => { item.act = true }, 200)
         } else {
           item.act = false
         }

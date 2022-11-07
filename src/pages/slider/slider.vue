@@ -8,11 +8,11 @@
         </div>
         <div class="slider-container">
           <div class="slides">
-            <div class="slide" :style="`transform: scale(0.8) translateX(${-622 * this.$store.state.counter}px)`" v-for="info in $store.state.usersdata" :key="info.id">
+            <div class="slide" :style="`transform: scale(0.8) translateX(${-622 * this.$store.state.counter}px)`" v-for="(info, i) in $store.state.usersdata" :key="info.id">
               <div v-if="this.$store.state.counter != 0" :style="info.act ? 'display: flex' : 'display: none'" class="button-move" @click="slideDec">
                 <img src="../../assets/Shape.svg" />
               </div>
-              <slide :data="{ name: info.owner.login, avatar: info.owner.avatar_url, readme: info.readme }" :active="info.act">
+              <slide :index="i" :data="{ name: info.owner.login, repo: info.name, avatar: info.owner.avatar_url, readme: info.readme }" :active="info.act">
               {{info}}
               </slide>
               <div v-if="this.$store.state.counter != 9" :style="info.act ? 'display: flex' : 'display: none'" class="button-move" @click="slideInc">

@@ -22,7 +22,7 @@
             </slot>
         </div>
         <div class="slide-button">
-            <xbutton text="follow" hovertext="unfollow"></xbutton>
+            <xbutton @click="buttonStar(data.name, data.repo, this.$store.state.usersdata[index].like)" :hover="this.$store.state.usersdata[index].like" text="follow" hovertext="unfollow"></xbutton>
         </div>
     </div>
 </template>
@@ -31,6 +31,7 @@
 import { toplineuser } from '../../components/topline-user'
 import { button } from '../../components/button'
 import { progress } from '../../components/progress'
+import { setStar } from '../../../fetches'
 export default {
   name: 'slide',
   components: {
@@ -38,7 +39,17 @@ export default {
     xbutton: button,
     xprogress: progress
   },
-  props: ['active', 'loading', 'data']
+  props: ['active', 'loading', 'data', 'index'],
+  methods: {
+    async buttonStar (login, repos, fol) {
+      try {
+        await setStar(login, repos, fol)
+        this.$store.state.usersdata[this.index].like = !this.$store.state.usersdata[this.index].like
+      } catch (e) {
+        console.log(e)
+      }
+    }
+  }
 }
 </script>
 

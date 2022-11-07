@@ -4,7 +4,7 @@
             <div class="auth">
                 <div class="auth-title">Gitogram/</div>
                 <div class="auth-text">More than just one repository. This is our digital world.</div>
-                <div class="auth-button">
+                <div class="auth-button" @click="code()">
                     <div class="button-text">Authorize with github</div>
                     <div class="button-icon">
                         <img src="../../assets/gitIcon.svg" alt="">
@@ -22,7 +22,8 @@
 </template>
 
 <script>
-
+import { clientId, clientSecret } from '../../../env'
+import { getCode } from '../../../fetches'
 export default {
   name: 'auth',
   data () {
@@ -32,6 +33,30 @@ export default {
   components: {
   },
   methods: {
+    code () {
+      getCode()
+    }
+  },
+  async created () {
+    const code = new URLSearchParams(window.location.search).get('code')
+    if (code) {
+      try {
+        const response = await fetch('https://webdev-api.loftschool.com/github', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            clientId, code, clientSecret
+          })
+        })
+        const { token } = await response.json()
+        localStorage.setItem('token', token)
+        window.location = '/'
+      } catch (e) {
+        console.log(e)
+      }
+    }
   }
 }
 </script>

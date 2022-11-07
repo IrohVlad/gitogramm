@@ -9,7 +9,7 @@
               <toplineuser :showname="false" >
                 <template v-slot:img>
                   <img v-if="this.$store.state.user.id" :src="this.$store.state.user.avatar_url" alt=""/>
-                  <img v-else @click="code()" src="../../assets/avatar.svg" alt=""/>
+                  <router-link v-else to="/auth"><img src="../../assets/avatar.svg" alt=""/></router-link>
                 </template>
               </toplineuser>
               <img class="icon" v-if="this.$store.state.user.id" src="../../assets/out.svg" alt=""/>
@@ -37,7 +37,6 @@
 import { topline } from '../../components/topline'
 import { toplineuser } from '../../components/topline-user'
 import { post } from '../../components/post'
-import { getCode } from '../../../fetches'
 
 export default {
   name: 'feeds',
@@ -80,9 +79,6 @@ export default {
     post
   },
   methods: {
-    code () {
-      getCode()
-    }
   }
 }
 </script>

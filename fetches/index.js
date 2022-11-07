@@ -35,11 +35,36 @@ export function getIssues (login, repos) {
     }
   })
 }
+export function setStar (login, repos, fol) {
+  if (fol) {
+    return axios.delete(`https://api.github.com/user/starred/${login}/${repos}`, {
+      headers: {
+        Authorization: `token ${localStorage.getItem('token')}`,
+        accept: 'application/vnd.github+json'
+      }
+    })
+  } else {
+    console.log('sub')
+    return axios.put(`https://api.github.com/user/starred/${login}/${repos}`, {
+      headers: {
+        Authorization: `token ${localStorage.getItem('token')}`,
+        accept: 'application/vnd.github+json'
+      }
+    })
+  }
+}
+export async function getStarres (login) {
+  return axios.get(`https://api.github.com/users/${login}/starred`, {
+    headers: {
+      authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  })
+}
 
 export async function getUser () {
   return fetch('https://api.github.com/user', {
     headers: {
-      Authorization: `token ${localStorage.getItem('token')}`
+      authorization: `Bearer ${localStorage.getItem('token')}`
     }
   })
 }

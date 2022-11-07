@@ -1,10 +1,20 @@
 <template>
     <div class="issues">
         <div class="text" @click="issuetoggle" @click.once="fetchIssues(index)">{{issue ? 'View issues' : 'Hide issues'}}<img :style="issue ? '' : 'transform: rotate(180deg)'" src="../../assets/vector-bottom.svg" class="star-img" alt=""/></div>
-        <ul class="issues-items" :style="issue ? issueactive : ''">
-            <li class="issue" v-for="issu in info" :key="issu.name">
-                <div class="issue-nick">{{issu.name}}</div>
-                <div class="issue-text">{{issu.text}}</div>
+        <div v-if="this.$store.state.usersdata[index].issues == ''" class="skelet" :style="issue ? issueactive : ''">
+          <div class="lines">
+            <div class="longline">
+              <div class="grad">
+            </div>
+            </div>
+              <div class="line"></div>
+              <div class="line"></div>
+          </div>
+        </div>
+        <ul v-else class="issues-items" :style="issue ? issueactive : ''">
+            <li class="issue" v-for="issu in this.$store.state.usersdata[index].issues" :key="issu.name">
+                <div class="issue-nick">{{issu.user.login}}</div>
+                <div class="issue-text">{{issu.title}}</div>
             </li>
         </ul>
     </div>
@@ -14,7 +24,7 @@
 import { getIssues } from '../../../fetches'
 export default {
   name: 'issuesbool',
-  props: ['info', 'index'],
+  props: ['index'],
   data () {
     return {
       issue: true,
@@ -30,8 +40,9 @@ export default {
     async fetchIssues (index) {
       try {
         const issues = await getIssues(this.$store.state.usersdata[index].owner.login, this.$store.state.usersdata[index].name)
+          .then(response => response.data)
         this.$store.commit('SET_ISSUES', { number: index, issue: issues })
-        console.log(issues)
+        console.log(this.$store.state.usersdata[index])
       } catch (error) {
         console.log(error)
       }
@@ -71,4 +82,45 @@ export default {
                 }
             }
         }
+.skelet{
+    margin-top: 10px;
+    width: 300px;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    gap: 10px;
+    .lines{
+        .grad{
+          background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 49.48%, rgba(255, 255, 255, 0) 100%);
+          height: 100%;
+          width: 20px;
+          animation: waves 2s ease infinite normal 0s forwards;
+          position: absolute;
+        }
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .longline{
+          height: 15px;
+          width: 300px;
+          background-color: #D9D9D9;
+        }
+        .line{
+            height: 15px;
+            width: 150px;
+            background-color: #D9D9D9;
+        }
+    }
+}
+@keyframes waves{
+    0%{
+        left: -10px;
+    }
+    60% {
+        left: 100%;
+    }
+    100%{
+        left: 100%;
+    }
+}
 </style>

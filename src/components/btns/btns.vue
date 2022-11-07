@@ -18,7 +18,7 @@
 <script>
 export default {
   name: 'btns',
-  props: ['stars', 'reposts'],
+  props: ['stars', 'reposts', 'index'],
   data () {
     return {
       star: true,

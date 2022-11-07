@@ -7,16 +7,12 @@
 <script>
 export default {
   name: 'button',
-  props: ['text', 'hovertext'],
+  props: ['text', 'hovertext', 'hover'],
   data () {
     return {
-      hover: false
     }
   },
   methods: {
-    onHover () {
-      this.hover = !this.hover
-    }
   }
 }
 </script>

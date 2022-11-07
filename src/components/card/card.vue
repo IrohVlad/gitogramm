@@ -5,7 +5,7 @@
     <div class="disc">
         {{disc}}
     </div>
-    <btns :stars="stars" :reposts="reposts" />
+    <btns :index="index" :stars="stars" :reposts="reposts" />
 </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   components: {
     btns
   },
-  props: ['title', 'disc', 'stars', 'reposts']
+  props: ['title', 'disc', 'stars', 'reposts', 'index']
 }
 </script>
 

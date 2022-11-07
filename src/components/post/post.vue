@@ -1,7 +1,7 @@
 <template>
     <div class="post">
         <slot name="user"></slot>
-        <card :title="title" :disc="disc" :stars="stars" :reposts="reposts" />
+        <card :index="index" :title="title" :disc="disc" :stars="stars" :reposts="reposts" />
         <issues :index="index" :info="issus"></issues>
         <div class="date">
         </div>
